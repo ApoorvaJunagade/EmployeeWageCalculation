@@ -1,22 +1,25 @@
-#! /bin/bash
-echo "welcome to employee wage calculation program" 
+#! /bin/bash 
 wagePerHour=20
-dayHour=8
-isPorF=1;
-	statusofPorF=$(( $RANDOM%2 ));
-	if [ $statusofPorF -eq $isPorF ]
-	then
- 	echo "employee is part time"
-	else 
+isPartTime=1;
+isFullTime=2;
+isabsent=0;
+echo "welcome to employee wage calculation program"
+empcheck=$(($RANDOM%3));
+case $empcheck in
+$isabsent)
+	emphrs=0
+	echo "the employee is absent";;
+$isFullTime)
+	emphrs=8
 	echo "employee is full time"
-	fi
- 	dailyWage=$(( $wagePerHour*$dayHour ))
-	ispresent=1
-	status=$(( $RANDOM%2 ))
-	if [ $status -eq $ispresent ] &&  [ $statusofPorF -eq $isPorF ]
-	then
- 	echo "employee is present"
-	echo "employee earned Rs" $dailyWage
-	else
- 	echo "employee is absent"
-        fi
+	;;
+$isPartTime)
+	emphrs=4
+	echo "employee is part time"
+	;;
+*)
+	echo "salary cannot be calculated"
+	;;
+esac
+salary=$(($emphrs*$wagePerHour));
+echo "salary is" $salary
