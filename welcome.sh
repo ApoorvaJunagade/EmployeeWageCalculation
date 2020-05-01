@@ -3,8 +3,10 @@ wagePerHour=20
 isPartTime=1;
 isFullTime=2;
 isabsent=0;
+i=0
+emphrs=0
 echo "welcome to employee wage calculation program"
-for (( count=0; count<=20; count++ ))
+while [ $emphrs -lt  100 ] && [ $i -lt  20 ]
 do
 empcheck=$(($RANDOM%3));
 case $empcheck in
@@ -13,12 +15,12 @@ $isabsent)
 	echo "the employee is absent"
 	;;
 $isFullTime)
-	emphrs=8
+	emphrs=$(( $emphrs+8))
 	echo "employee is full time"
 	salary=$(($salary+(($emphrs*$wagePerHour)) ))
 	;;
 $isPartTime)
-	emphrs=4
+	emphrs=$(($emphrs+4))
 	echo "employee is part time"
 	salary=$(($salary+(($emphrs*$wagePerHour)) ))
 	;;
@@ -26,6 +28,7 @@ $isPartTime)
 	echo "salary cannot be calculated"
 	;;
 esac
+i=$(( $i+1))
 done
 
 echo "total salary is" $salary
