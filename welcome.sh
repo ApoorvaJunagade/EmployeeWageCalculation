@@ -1,5 +1,4 @@
-#! /bin/bash
-echo "welcome to employee wage calculation program"
+
 
 #! /bin/bash 
 ispresent=1;
@@ -9,3 +8,4 @@ ispresent=1;
  	echo "employee is present"
 	else
  	echo "employee is absent"
+	fi
